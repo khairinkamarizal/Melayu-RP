@@ -1,0 +1,101 @@
+{
+  "name": "anubisrp",
+  "version": "2.0.0",
+  "description": "AnubisRP - Melayu Version",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "tsc && electron .",
+    "build": "set NODE_ENV=production && tsc && copyfiles -u 1 \"dist/**/*\" dist/ && electron-builder build --win",
+    "build:x64": "set NODE_ENV=production && tsc && copyfiles -u 1 \"dist/**/*\" dist/ && electron-builder build --win --x64",
+    "build:ia32": "set NODE_ENV=production && tsc && copyfiles -u 1 \"dist/**/*\" dist/ && electron-builder build --win --ia32",
+    "build:mac": "export NODE_ENV=production && tsc && copyfiles -u 1 \"dist/**/*\" dist/ && electron-builder build --mac",
+    "build:linux": "export NODE_ENV=production && tsc && copyfiles -u 1 \"dist/**/*\" dist/ && electron-builder build --linux",
+    "build:all": "set NODE_ENV=production && tsc && copyfiles -u 1 \"dist/**/*\" dist/ && electron-builder build -mwl",
+    "dev": "tsc-watch --onSuccess \"electron .\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Khairinkamarizal",
+    "email": "khairinkamarizal@gmail.com",
+    "url": "https://khairin.xyz"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/node": "^20.11.24",
+    "copyfiles": "^2.4.1",
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.3.3"
+  },
+  "build": {
+    "appId": "com.anubisrp.app",
+    "productName": "AnubisRP - Melayu Version",
+    "publish": {
+      "provider": "github",
+      "owner": "Hxmada",
+      "repo": "AnubisRP-Electron",
+      "private": false,
+      "releaseType": "release"
+    },
+    "directories": {
+      "output": "build",
+      "buildResources": "images"
+    },
+    "files": [
+      "dist/**/*",
+      "images/**/*",
+      "src/**/*.html",
+      "src/**/*.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "src",
+        "to": "src",
+        "filter": [
+          "**/*.html",
+          "**/*.js"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "images/icon.ico",
+      "artifactName": "AnubisRP_Setup_v${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AnubisRP",
+      "installerIcon": "images/icon.ico",
+      "uninstallerIcon": "images/icon.ico",
+      "installerHeaderIcon": "images/icon.ico",
+      "deleteAppDataOnUninstall": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "images/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "images/icon.png"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.7"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "electron"
+    ],
+    "onlyBuiltDependencies": [
+      "electron"
+    ]
+  }
+}
