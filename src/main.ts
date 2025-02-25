@@ -257,7 +257,7 @@ const createWindow = () => {
       }
     }
 
-    // anubisView?.webContents.openDevTools({ mode: "detach" });
+    anubisView?.webContents.openDevTools({ mode: "detach" });
   };
 
   mainWindow.setBrowserView(anubisView);
@@ -421,6 +421,7 @@ const createWindow = () => {
 
   ipcMain.on("toggle-auto-chat", async (_event, enabled) => {
     autoChatEnabled = enabled;
+    const settings = readAutoChatSettings();
 
     try {
       if (enabled) {
