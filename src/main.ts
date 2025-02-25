@@ -257,7 +257,7 @@ const createWindow = () => {
       }
     }
 
-    anubisView?.webContents.openDevTools({ mode: "detach" });
+    // anubisView?.webContents.openDevTools({ mode: "detach" });
   };
 
   mainWindow.setBrowserView(anubisView);
